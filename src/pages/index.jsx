@@ -1,16 +1,25 @@
-import React from 'react';
+/** @jsx jsx */
+import { jsx, Flex } from 'theme-ui'
 import Link from 'next/link';
 
 
 export default function IndexPage() {
+  /** Styles */
+  const pageContainerStyles = {
+    variant: 'containers.page',
+    alignItems: 'center',
+    height: '100%'
+  };
+  const titleStyles = {
+    fontSize: 8,
+    my: 0,
+  };
+
   return (
-    <>
-      <h1>Home page</h1>
-      <Link href="/notes">
-        <a>
-          Go to note index
-        </a>
-      </Link>
-    </>
-    );
+    <div sx={{ height: `calc(100vh - 60px)`}}>
+      <Flex sx={pageContainerStyles}>
+        <h1 sx={titleStyles}>This is a really dope note taking app.</h1>
+      </Flex>
+    </div>
+  );
 }
