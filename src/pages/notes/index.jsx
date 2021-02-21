@@ -2,8 +2,7 @@
 import { jsx, Flex } from 'theme-ui'
 import Link from 'next/link';
 
-export default function NotePage() {
-  const notes = new Array(15).fill(1).map((e, i) => ({id: i, title: `Note: ${i}`}));
+export default function NotePage({notes}) {
   return (
     <div sx={{variant: 'containers.page'}}>
       <h1>My Notes</h1>
@@ -23,4 +22,12 @@ export default function NotePage() {
       </Flex>
     </div>
   );
+}
+
+export async function getServerSideProps() {
+  const res = await fetch(`${process.env.APP_URL}/api/notes/`)
+  const {data} = await res.json()
+  return {
+    props: {notes: data}
+  }
 }
